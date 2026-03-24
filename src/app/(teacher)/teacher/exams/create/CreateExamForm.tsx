@@ -56,7 +56,12 @@ export default function CreateExamForm({ subjects }: { subjects: any[] }) {
 
             <div>
                 <label className="block text-sm font-bold text-gray-700 mb-1">Exam Name</label>
-                <input name="name" required className="w-full border rounded p-2" placeholder="e.g. Unit Test 1" />
+                <input
+                    name="name"
+                    required
+                    className="w-full border rounded p-2 text-gray-900 placeholder-gray-500 focus:ring focus:ring-blue-500"
+                    placeholder="e.g. Unit Test 1"
+                />
             </div>
 
             <div>

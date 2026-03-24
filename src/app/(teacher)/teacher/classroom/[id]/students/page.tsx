@@ -61,10 +61,6 @@ export default function StudentListPage({ params }: { params: Promise<{ id: stri
                         <Filter size={16} />
                         <span>Filter</span>
                     </button>
-                    <button className="flex items-center space-x-2 px-4 py-2 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 transition-colors text-sm font-medium shadow-md shadow-emerald-100">
-                        <FileText size={16} />
-                        <span>Export Report</span>
-                    </button>
                 </div>
             </div>
 

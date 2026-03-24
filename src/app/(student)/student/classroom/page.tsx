@@ -161,33 +161,6 @@ export default function ClassroomPage() {
                     </div>
                 </Link>
 
-                {/* Attendance Stats Card - Non-clickable */}
-                <div className="h-full">
-                    <div className="bg-white rounded-xl shadow-md border-t-4 border-purple-500 h-full">
-                        <div className="p-6">
-                            <div className="flex items-center space-x-3 mb-6">
-                                <div className="bg-purple-50 p-3 rounded-lg text-purple-600">
-                                    <Calendar size={24} />
-                                </div>
-                                <div>
-                                    <h2 className="text-lg font-bold text-gray-800">Attendance</h2>
-                                    <p className="text-gray-500 text-sm">Overall performance</p>
-                                </div>
-                            </div>
-
-                            <div className="grid grid-cols-2 gap-4">
-                                <div className="bg-gray-50 p-3 rounded-lg text-center border border-gray-100">
-                                    <p className="text-xs text-gray-500 font-medium uppercase tracking-wider mb-1">Present</p>
-                                    <p className="text-lg font-bold text-green-600">{attendanceData.present}/{attendanceData.total}</p>
-                                </div>
-                                <div className="bg-gray-50 p-3 rounded-lg text-center border border-gray-100">
-                                    <p className="text-xs text-gray-500 font-medium uppercase tracking-wider mb-1">Rate</p>
-                                    <p className="text-lg font-bold text-purple-600">{attendanceData.percentage}%</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     );

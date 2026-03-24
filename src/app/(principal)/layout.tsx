@@ -51,7 +51,7 @@ export default function PrincipalLayout({
                         <div className="flex justify-center">
                             <Image
                                 src="/favicon.png"
-                                alt="MLZS"
+                                alt="Mount Litera Zee School, North Kolkata, Barrackpore"
                                 width={40}
                                 height={40}
                                 className="h-10 w-10 object-contain rounded-lg"
@@ -66,31 +66,30 @@ export default function PrincipalLayout({
                     <NavLink href="/principal/noticeboard" icon={<Bell size={20} />} label="Notice Board" isCollapsed={isCollapsed} />
                 </nav>
 
-                <div className="p-4 border-t border-slate-800 bg-slate-900/50">
+                <div className="p-4 border-t border-slate-800 bg-slate-900/50 space-y-3">
                     {!isCollapsed ? (
                         <>
-                            <div className="flex items-center space-x-3 mb-4">
-                                <div className="w-10 h-10 rounded-full bg-purple-900/50 border border-purple-700/50 flex items-center justify-center text-purple-400 font-bold">
-                                    {mockUser.name?.[0] || "P"}
+                            <div className="flex flex-col items-center space-y-3">
+                                <div className="w-10 h-10 rounded-full bg-blue-900/50 border border-blue-700/50 flex items-center justify-center text-blue-400 font-bold">
+                                    {mockUser.name[0]}
                                 </div>
-                                <div>
-                                    <p className="font-medium text-sm text-slate-200">{mockUser.name}</p>
-                                    <p className="text-xs text-slate-500">{mockUser.email}</p>
+                                <div className="text-center">
+                                    <p className="text-sm font-medium text-slate-200">{mockUser.name}</p>
+                                    <p className="text-xs text-slate-400">{mockUser.email}</p>
                                 </div>
                             </div>
-                            <Link href="/" className="flex items-center space-x-3 text-red-400 p-2 hover:bg-red-950/30 rounded-lg transition-colors text-sm font-medium">
-                                <LogOut size={18} />
-                                <span>Logout</span>
-                            </Link>
+                            <button
+                                className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-500 transition-colors"
+                                onClick={() => alert('Logout functionality not implemented yet')}
+                            >
+                                Logout
+                            </button>
                         </>
                     ) : (
-                        <div className="flex flex-col items-center space-y-4">
-                            <div className="w-10 h-10 rounded-full bg-purple-900/50 border border-purple-700/50 flex items-center justify-center text-purple-400 font-bold">
-                                {mockUser.name?.[0] || "P"}
+                        <div className="flex flex-col items-center space-y-3">
+                            <div className="w-10 h-10 rounded-full bg-blue-900/50 border border-blue-700/50 flex items-center justify-center text-blue-400 font-bold">
+                                {mockUser.name[0]}
                             </div>
-                            <Link href="/" className="text-red-400 p-2 hover:bg-red-950/30 rounded-lg transition-colors">
-                                <LogOut size={18} />
-                            </Link>
                         </div>
                     )}
                 </div>

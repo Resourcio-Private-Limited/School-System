@@ -65,7 +65,7 @@ export default function ChangePasswordPage() {
                         <label className="block text-sm font-bold mb-1">New Password</label>
                         <input
                             type="password"
-                            className="w-full border p-2 rounded"
+                            className="w-full border rounded p-2 text-gray-900 placeholder-gray-500 focus:ring focus:ring-blue-500"
                             value={password}
                             onChange={e => setPassword(e.target.value)}
                             required
@@ -75,7 +75,7 @@ export default function ChangePasswordPage() {
                         <label className="block text-sm font-bold mb-1">Confirm Password</label>
                         <input
                             type="password"
-                            className="w-full border p-2 rounded"
+                            className="w-full border rounded p-2 text-gray-900 placeholder-gray-500 focus:ring focus:ring-blue-500"
                             value={confirm}
                             onChange={e => setConfirm(e.target.value)}
                             required

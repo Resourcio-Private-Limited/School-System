@@ -1,36 +1,27 @@
 "use client";
 
-import { use, useState } from "react";
+import { useState } from "react";
 import { ArrowLeft, Search, Paperclip } from "lucide-react";
 import Link from "next/link";
 
-export default function MessagesPage({ params }: { params: Promise<{ id: string }> }) {
-    const { id } = use(params);
+export default function AccountantMessages() {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedStudentId, setSelectedStudentId] = useState<number | null>(null);
     const [newMessage, setNewMessage] = useState("");
     const [attachment, setAttachment] = useState<File | null>(null);
 
-    // Mock Students List with Last Message
     const students = [
-        { id: 101, name: "Aarav Patel", rollNo: "01", avatar: "A", lastMessage: "Thank you for the update, sir.", time: "10:30 AM", unread: 0 },
-        { id: 102, name: "Aditi Sharma", rollNo: "02", avatar: "A", lastMessage: "I will be absent tomorrow due to...", time: "Yesterday", unread: 2 },
-        { id: 103, name: "Arjun Singh", rollNo: "03", avatar: "A", lastMessage: "Is the assignment due by Friday?", time: "Yesterday", unread: 0 },
-        { id: 104, name: "Diya Gupta", rollNo: "04", avatar: "D", lastMessage: "Okay, noted.", time: "Oct 15", unread: 0 },
-        { id: 105, name: "Ishaan Kumar", rollNo: "05", avatar: "I", lastMessage: "Can we schedule a call?", time: "Oct 14", unread: 1 },
+        { id: 1, name: "John Doe", rollNo: "01", avatar: "J", lastMessage: "Fee payment confirmed.", time: "10:30 AM", unread: 0 },
+        { id: 2, name: "Jane Smith", rollNo: "02", avatar: "J", lastMessage: "Pending fee details.", time: "Yesterday", unread: 1 },
     ];
 
-    // Mock Messages for Selected Student
-    const [conversations, setConversations] = useState<{ [key: number]: { id: number, sender: 'teacher' | 'student', text: string, time: string }[] }>({
-        101: [
-            { id: 1, sender: 'teacher', text: "Hello Aarav, your performance in the last test was excellent. Keep it up!", time: "10:00 AM" },
-            { id: 2, sender: 'student', text: "Thank you so much sir! I have been working hard.", time: "10:15 AM" },
-            { id: 3, sender: 'teacher', text: "It shows. Let me know if you need any help with the upcoming project.", time: "10:25 AM" },
-            { id: 4, sender: 'student', text: "Thank you for the update, sir.", time: "10:30 AM" },
+    const [conversations, setConversations] = useState<{ [key: number]: { id: number, sender: 'accountant' | 'student', text: string, time: string }[] }>({
+        1: [
+            { id: 1, sender: 'accountant', text: "Your fee payment has been received.", time: "10:00 AM" },
+            { id: 2, sender: 'student', text: "Thank you!", time: "10:15 AM" },
         ],
-        102: [
-            { id: 1, sender: 'student', text: "Good morning Ma'am, I wanted to inform you that I will be absent tomorrow.", time: "Yesterday" },
-            { id: 2, sender: 'student', text: "I have a doctor's appointment.", time: "Yesterday" },
+        2: [
+            { id: 1, sender: 'student', text: "Can you provide details of pending fees?", time: "Yesterday" },
         ]
     });
 
@@ -48,7 +39,7 @@ export default function MessagesPage({ params }: { params: Promise<{ id: string 
 
         const newMsgOption = {
             id: Date.now(),
-            sender: 'teacher' as const,
+            sender: 'accountant' as const,
             text: newMessage,
             time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         };
@@ -61,21 +52,15 @@ export default function MessagesPage({ params }: { params: Promise<{ id: string 
         setAttachment(null);
     };
 
-    const handleAttachmentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files && e.target.files.length > 0) {
-            setAttachment(e.target.files[0]);
-        }
-    };
-
     return (
         <div className="min-h-screen bg-gray-50 py-8 px-6">
             <div className="max-w-7xl mx-auto space-y-8">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-4">
-                        <Link href={`/teacher/classroom/${id}`}>
+                        <Link href="/accounts">
                             <button className="flex items-center space-x-2 text-slate-600 hover:text-blue-700 transition-colors">
                                 <ArrowLeft size={20} />
-                                <span className="font-medium">Back to Classroom</span>
+                                <span className="font-medium">Back to Accounts</span>
                             </button>
                         </Link>
                         <div className="h-6 w-px bg-slate-400"></div>
@@ -85,7 +70,7 @@ export default function MessagesPage({ params }: { params: Promise<{ id: string 
 
                 <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-md">
                     <p className="text-sm text-yellow-800">
-                        <strong>Note:</strong> This section is strictly for queries, issues, or formal communication. Please refrain from using it for casual or continuous chat.
+                        <strong>Note:</strong> This section is strictly for fee-related queries or formal communication.
                     </p>
                 </div>
 
@@ -145,7 +130,7 @@ export default function MessagesPage({ params }: { params: Promise<{ id: string 
                                     {activeMessages.map((msg) => (
                                         <div key={msg.id} className="border-b border-gray-200 pb-4">
                                             <div className="flex justify-between items-baseline">
-                                                <h4 className={`text-sm font-bold ${msg.sender === 'teacher' ? 'text-blue-600' : 'text-gray-800'}`}>{msg.sender === 'teacher' ? 'You' : activeStudent.name}</h4>
+                                                <h4 className={`text-sm font-bold ${msg.sender === 'accountant' ? 'text-blue-600' : 'text-gray-800'}`}>{msg.sender === 'accountant' ? 'You' : activeStudent.name}</h4>
                                                 <span className="text-xs text-gray-400">{msg.time}</span>
                                             </div>
                                             <p className="text-sm text-gray-700 mt-1">{msg.text}</p>
@@ -153,51 +138,36 @@ export default function MessagesPage({ params }: { params: Promise<{ id: string 
                                     ))}
                                 </div>
 
-                                <div className="p-6 bg-gray-50 border-t border-gray-200">
-                                    <form onSubmit={handleSendMessage} className="space-y-4">
-                                        <div>
-                                            <label className="block text-sm font-semibold text-gray-700 mb-2">Reply</label>
-                                            <textarea
-                                                rows={4}
-                                                placeholder="Type your formal reply here..."
-                                                className="w-full border rounded p-2 text-gray-900 placeholder-gray-500 focus:ring focus:ring-blue-500 focus:outline-none text-sm resize-none"
-                                                value={newMessage}
-                                                onChange={(e) => setNewMessage(e.target.value)}
-                                            ></textarea>
-                                        </div>
-                                        <div>
-                                            <label className="block text-sm font-semibold text-gray-700 mb-2">Attachment</label>
+                                <div className="p-4 border-t border-gray-200 bg-gray-50">
+                                    <form onSubmit={handleSendMessage} className="flex items-center space-x-2">
+                                        <input
+                                            type="text"
+                                            value={newMessage}
+                                            onChange={(e) => setNewMessage(e.target.value)}
+                                            placeholder="Type a message"
+                                            className="flex-1 border rounded p-2 text-gray-900 placeholder-gray-500 focus:ring focus:ring-blue-500"
+                                        />
+                                        <label className="flex items-center space-x-2 cursor-pointer">
+                                            <Paperclip size={20} className="text-gray-400" />
                                             <input
                                                 type="file"
-                                                onChange={handleAttachmentChange}
-                                                className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm"
+                                                className="hidden"
+                                                onChange={(e) => setAttachment(e.target.files ? e.target.files[0] : null)}
                                             />
-                                            {attachment && (
-                                                <p className="text-sm text-gray-600 mt-2">Attached: {attachment.name}</p>
-                                            )}
-                                        </div>
-                                        <div className="flex justify-end">
-                                            <button
-                                                type="submit"
-                                                disabled={!newMessage.trim()}
-                                                className={`px-6 py-2 rounded-lg font-semibold text-sm transition-colors ${newMessage.trim()
-                                                    ? 'bg-blue-600 text-white hover:bg-blue-700'
-                                                    : 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                                                    }`}
-                                            >
-                                                Send Message
-                                            </button>
-                                        </div>
+                                        </label>
+                                        <button
+                                            type="submit"
+                                            disabled={!newMessage.trim() || !selectedStudentId}
+                                            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
+                                        >
+                                            Send
+                                        </button>
                                     </form>
                                 </div>
                             </>
                         ) : (
-                            <div className="flex-1 flex flex-col items-center justify-center text-gray-400">
-                                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4 text-gray-300">
-                                    <Search size={32} />
-                                </div>
-                                <h3 className="text-lg font-bold text-gray-600 mb-1">Select a Student</h3>
-                                <p className="text-sm">Choose a student from the sidebar to view messages</p>
+                            <div className="flex-1 flex items-center justify-center text-gray-500">
+                                <p>Select a student to view messages.</p>
                             </div>
                         )}
                     </div>

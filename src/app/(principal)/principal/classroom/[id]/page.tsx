@@ -1,4 +1,3 @@
-
 import ClassroomStudentsClient from "./ClassroomStudentsClient";
 
 // Mock student data generator
@@ -16,8 +15,8 @@ function generateMockStudents(classroomId: string, classroomName: string, sectio
         const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
         const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
         const fullName = `${firstName} ${lastName}`;
-        const admissionNo = `MLZS/${currentYear}/${String(i + 1).padStart(4, '0')}`;
-        const email = `${firstName.toLowerCase()}.${lastName.toLowerCase()}@student.mlzs.edu.in`;
+        const admissionNo = `MLZS NK Barrackpore/${currentYear}/${String(i + 1).padStart(4, '0')}`;
+        const email = `${firstName.toLowerCase()}.${lastName.toLowerCase()}@student.mountlitera.edu.in`;
 
         // Random but realistic data
         const attendancePercentage = 60 + Math.random() * 40; // 60-100%

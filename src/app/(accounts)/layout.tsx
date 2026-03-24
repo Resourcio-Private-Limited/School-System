@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { LayoutDashboard, PlusCircle, TrendingDown, BarChart3, LogOut, ChevronLeft, ChevronRight } from "lucide-react";
+import { LayoutDashboard, PlusCircle, TrendingDown, BarChart3, MessageCircleIcon, LogOut, ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function AccountantLayout({
     children,
@@ -51,7 +51,7 @@ export default function AccountantLayout({
                         <div className="flex justify-center">
                             <Image
                                 src="/favicon.png"
-                                alt="MLZS"
+                                alt="Mount Litera Zee School, North Kolkata, Barrackpore"
                                 width={40}
                                 height={40}
                                 className="h-10 w-10 object-contain rounded-lg"
@@ -65,33 +65,43 @@ export default function AccountantLayout({
                     <NavLink href="/accounts/income" icon={<PlusCircle size={20} />} label="Add Income" isCollapsed={isCollapsed} />
                     <NavLink href="/accounts/expenses" icon={<TrendingDown size={20} />} label="Expenses" isCollapsed={isCollapsed} />
                     <NavLink href="/accounts/analysis" icon={<BarChart3 size={20} />} label="Analysis" isCollapsed={isCollapsed} />
+                    <NavLink href="/accounts/messages" icon={<MessageCircleIcon size={20} />} label="Messages" isCollapsed={isCollapsed} />
                 </nav>
 
-                <div className="p-4 border-t border-slate-800 bg-slate-900/50">
+                {/* <nav className="p-4 bg-gray-100 border-b">
+                    <ul className="flex flex-col space-y-2">
+                        <li>
+                            <a href="/accounts/messages" className="block px-4 py-2 rounded-lg text-gray-700 hover:bg-blue-100 hover:text-blue-700 transition">
+                                Messages
+                            </a>
+                        </li>
+                    </ul>
+                </nav> */}
+
+                <div className="p-4 border-t border-slate-800 bg-slate-900/50 space-y-3">
                     {!isCollapsed ? (
                         <>
-                            <div className="flex items-center space-x-3 mb-4">
-                                <div className="w-10 h-10 rounded-full bg-orange-900/50 border border-orange-700/50 flex items-center justify-center text-orange-400 font-bold">
-                                    {mockUser.name?.[0] || "A"}
+                            <div className="flex flex-col items-center space-y-3">
+                                <div className="w-10 h-10 rounded-full bg-blue-900/50 border border-blue-700/50 flex items-center justify-center text-blue-400 font-bold">
+                                    {mockUser.name[0]}
                                 </div>
-                                <div>
-                                    <p className="font-medium text-sm text-slate-200">{mockUser.name}</p>
-                                    <p className="text-xs text-slate-500">{mockUser.email}</p>
+                                <div className="text-center">
+                                    <p className="text-sm font-medium text-slate-200">{mockUser.name}</p>
+                                    <p className="text-xs text-slate-400">{mockUser.email}</p>
                                 </div>
                             </div>
-                            <Link href="/" className="flex items-center space-x-3 text-red-400 p-2 hover:bg-red-950/30 rounded-lg transition-colors text-sm font-medium">
-                                <LogOut size={18} />
-                                <span>Logout</span>
-                            </Link>
+                            <button
+                                className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-500 transition-colors"
+                                onClick={() => alert('Logout functionality not implemented yet')}
+                            >
+                                Logout
+                            </button>
                         </>
                     ) : (
-                        <div className="flex flex-col items-center space-y-4">
-                            <div className="w-10 h-10 rounded-full bg-orange-900/50 border border-orange-700/50 flex items-center justify-center text-orange-400 font-bold">
-                                {mockUser.name?.[0] || "A"}
+                        <div className="flex flex-col items-center space-y-3">
+                            <div className="w-10 h-10 rounded-full bg-blue-900/50 border border-blue-700/50 flex items-center justify-center text-blue-400 font-bold">
+                                {mockUser.name[0]}
                             </div>
-                            <Link href="/" className="text-red-400 p-2 hover:bg-red-950/30 rounded-lg transition-colors">
-                                <LogOut size={18} />
-                            </Link>
                         </div>
                     )}
                 </div>
