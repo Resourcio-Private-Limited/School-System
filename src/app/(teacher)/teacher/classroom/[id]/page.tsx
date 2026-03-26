@@ -68,15 +68,6 @@ export default function TeacherClassroomPage({ params }: { params: Promise<{ id:
                             </div>
                         </div>
                     )}
-                    <div className="flex items-center space-x-4">
-                        <div className="bg-white/20 p-3 rounded-xl backdrop-blur-sm">
-                            <Clock size={28} />
-                        </div>
-                        <div>
-                            <p className="text-sm text-emerald-100 font-medium">Next Session</p>
-                            <p className="font-bold text-xl">10:30 AM</p>
-                        </div>
-                    </div>
                 </div>
             </div>
 

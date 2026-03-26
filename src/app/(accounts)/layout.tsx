@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { LayoutDashboard, PlusCircle, TrendingDown, BarChart3, LogOut, ChevronLeft, ChevronRight } from "lucide-react";
+import { LayoutDashboard, PlusCircle, TrendingDown, BarChart3, MessageCircleIcon, LogOut, ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function AccountantLayout({
     children,
@@ -51,7 +51,7 @@ export default function AccountantLayout({
                         <div className="flex justify-center">
                             <Image
                                 src="/favicon.png"
-                                alt="MLZS"
+                                alt="Mount Litera Zee School, North Kolkata, Barrackpore"
                                 width={40}
                                 height={40}
                                 className="h-10 w-10 object-contain rounded-lg"
@@ -61,16 +61,17 @@ export default function AccountantLayout({
                 </div>
 
                 <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
-                    <NavLink href="/accounts" icon={<LayoutDashboard size={20} />} label="Classroom" isCollapsed={isCollapsed} />
+                    <NavLink href="/accounts" icon={<LayoutDashboard size={20} />} label="Dashboard" isCollapsed={isCollapsed} />
                     <NavLink href="/accounts/income" icon={<PlusCircle size={20} />} label="Add Income" isCollapsed={isCollapsed} />
                     <NavLink href="/accounts/expenses" icon={<TrendingDown size={20} />} label="Expenses" isCollapsed={isCollapsed} />
                     <NavLink href="/accounts/analysis" icon={<BarChart3 size={20} />} label="Analysis" isCollapsed={isCollapsed} />
+                    <NavLink href="/accounts/messages" icon={<MessageCircleIcon size={20} />} label="Messages" isCollapsed={isCollapsed} />
                 </nav>
 
-                <div className="p-4 border-t border-slate-800 bg-slate-900/50">
+                <div className="p-4 border-t border-slate-800 bg-slate-900/50 space-y-3">
                     {!isCollapsed ? (
                         <>
-                            <div className="flex items-center space-x-3 mb-4">
+                            <div className="flex items-center space-x-3 mb-3">
                                 <div className="w-10 h-10 rounded-full bg-orange-900/50 border border-orange-700/50 flex items-center justify-center text-orange-400 font-bold">
                                     {mockUser.name?.[0] || "A"}
                                 </div>
@@ -79,17 +80,17 @@ export default function AccountantLayout({
                                     <p className="text-xs text-slate-500">{mockUser.email}</p>
                                 </div>
                             </div>
-                            <Link href="/" className="flex items-center space-x-3 text-red-400 p-2 hover:bg-red-950/30 rounded-lg transition-colors text-sm font-medium">
+                            <Link href="/" className="flex items-center justify-center space-x-2 bg-red-600 hover:bg-red-700 active:bg-red-800 text-white p-3 rounded-lg transition-colors text-sm font-semibold shadow-lg hover:shadow-red-600/50 w-full">
                                 <LogOut size={18} />
                                 <span>Logout</span>
                             </Link>
                         </>
                     ) : (
-                        <div className="flex flex-col items-center space-y-4">
+                        <div className="flex flex-col items-center space-y-3">
                             <div className="w-10 h-10 rounded-full bg-orange-900/50 border border-orange-700/50 flex items-center justify-center text-orange-400 font-bold">
                                 {mockUser.name?.[0] || "A"}
                             </div>
-                            <Link href="/" className="text-red-400 p-2 hover:bg-red-950/30 rounded-lg transition-colors">
+                            <Link href="/" className="bg-red-600 hover:bg-red-700 active:bg-red-800 text-white p-3 rounded-lg transition-colors shadow-lg hover:shadow-red-600/50" title="Logout">
                                 <LogOut size={18} />
                             </Link>
                         </div>
@@ -109,7 +110,7 @@ function NavLink({ href, icon, label, isCollapsed }: { href: string; icon: React
     return (
         <Link
             href={href}
-            className={`flex items-center ${isCollapsed ? 'justify-center' : 'space-x-3'} p-3 rounded-lg text-slate-400 hover:bg-amber-500 hover:text-white transition-all duration-300 group`}
+            className={`flex items-center ${isCollapsed ? 'justify-center' : 'space-x-3'} p-3 rounded-lg text-slate-400 hover:bg-orange-600 hover:text-white transition-all duration-200 group`}
             title={isCollapsed ? label : undefined}
         >
             <span className="group-hover:scale-110 transition-transform duration-200">{icon}</span>

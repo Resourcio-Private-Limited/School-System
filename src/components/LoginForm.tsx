@@ -50,13 +50,20 @@ export default function LoginForm({
 
                 <div className="relative z-10">
                     <div className="flex items-center space-x-3 text-white mb-12">
-                        <div className="bg-blue-600 p-2 rounded-lg">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" /></svg>
-                        </div>
-                        <span className="text-xl font-bold tracking-wide">MLZS PORTAL</span>
+                        
+                            <Image
+                                          src="/sidebar_logo_expanded.png"
+                                          alt="Mount Litera Zee School"
+                                          width={120}
+                                          height={40}
+                                          className="h-16 w-auto opacity-90"
+                                          priority
+                                        />
+                        <span className="text-xl font-bold tracking-wide">Mount Litera Zee School, North Kolkata,
+Barrackpore Portal</span>
                     </div>
 
-                    <h1 className="text-5xl font-bold text-white leading-tight mb-6">
+                    <h1 className="text-3xl font-bold text-white leading-tight mb-6">
                         Nurturing Potential,<br />
                         <span className="text-blue-500">Unleashing Brilliance</span>
                     </h1>
@@ -67,7 +74,7 @@ export default function LoginForm({
                     <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50">
                         <Image
                             src="/MLZS_contents/Students Stage 1.png"
-                            alt="Students Learning"
+                            alt="Mount Litera Zee School, North Kolkata, Barrackpore"
                             width={500}
                             height={300}
                             className="object-cover w-full h-auto opacity-90 hover:opacity-100 transition-opacity duration-500"
@@ -90,7 +97,7 @@ export default function LoginForm({
                         <div className="lg:hidden flex justify-center mb-6">
                             <Image
                                 src="/MLZS_contents/Horizontal MLZS Logo.png"
-                                alt="Mount Litera Zee School"
+                                alt="Mount Litera Zee School, North Kolkata, Barrackpore"
                                 width={180}
                                 height={50}
                                 className="h-auto"
@@ -114,7 +121,7 @@ export default function LoginForm({
                                 type={identifierType}
                                 value={identifier}
                                 onChange={(e) => setIdentifier(e.target.value)}
-                                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition-all placeholder:text-slate-400 hover:bg-white hover:border-slate-300"
+                                className="w-full border rounded p-2 text-gray-900 placeholder-gray-500 focus:ring focus:ring-blue-500"
                                 placeholder={identifierPlaceholder}
                                 required
                             />
@@ -128,7 +135,7 @@ export default function LoginForm({
                                 type="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition-all placeholder:text-slate-400 hover:bg-white hover:border-slate-300"
+                                className="w-full border rounded p-2 text-gray-900 placeholder-gray-500 focus:ring focus:ring-blue-500"
                                 placeholder="••••••••"
                                 required
                             />

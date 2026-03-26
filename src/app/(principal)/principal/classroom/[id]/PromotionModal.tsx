@@ -53,7 +53,19 @@ export default function PromotionModal({
     // Or we keep PromotionService logic in frontend?
     // It's better to move logic to frontend if it's pure logic.
     // For now, let's assume all pass.
-    const eligibleStudents = students;
+    const calculatePercentage = (marks: number, maxMarks: number): string => {
+        return ((marks / maxMarks) * 100).toFixed(2) + '%';
+    };
+
+    const eligibleStudents = students.map(student => ({
+        ...student,
+        percentage: student.examResults && student.examResults.length > 0
+            ? calculatePercentage(
+                student.examResults.reduce((sum, result) => sum + result.marks, 0),
+                student.examResults.reduce((sum, result) => sum + result.maxMarks, 0)
+            )
+            : 'N/A'
+    }));
     const notEligibleStudents: Student[] = [];
 
     const summary = {
@@ -208,6 +220,7 @@ export default function PromotionModal({
                                                 <div>
                                                     <p className="font-semibold text-gray-900">{student.user.name}</p>
                                                     <p className="text-sm text-gray-600">{student.admissionNo} • {student.section?.name}</p>
+                                                    <p className="text-sm text-gray-600">Percentage: {student.percentage}</p>
                                                 </div>
                                                 <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">
                                                     PASSED

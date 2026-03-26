@@ -3,33 +3,26 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
-    Edit2,
-    Save,
-    X,
-    Upload,
+    Briefcase,
+    IdCard,
+    Calendar,
     User,
     MapPin,
     Phone,
     Mail,
-    Calendar,
-    Briefcase,
-    IdCard,
-    GraduationCap,
-    Book,
-    Lock,
     Shield,
     IndianRupee,
     FileText,
-    Activity
+    Activity,
+    GraduationCap,
+    Book,
+    Lock
 } from "lucide-react";
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 export default function TeacherProfilePage() {
-    const [isEditing, setIsEditing] = useState(false);
-    const fileInputRef = useRef<HTMLInputElement>(null);
-
     // Mock teacher data
-    const [teacherData, setTeacherData] = useState({
+    const teacherData = {
         personal: {
             image: "/MLZS_contents/Students Stage 1.png", // Using same placeholder as student for now
             name: "Rajesh Kumar",
@@ -52,57 +45,6 @@ export default function TeacherProfilePage() {
             officialDocumentNumber: "PAN: ABCDE1234F",
             classTeacherOf: "10-A"
         }
-    });
-
-    // Editable fields state
-    const [editableData, setEditableData] = useState({
-        phone: teacherData.personal.phone,
-        address: teacherData.personal.address,
-        image: teacherData.personal.image,
-        bloodGroup: teacherData.personal.bloodGroup
-    });
-
-    const handleEdit = () => {
-        setIsEditing(true);
-    };
-
-    const handleCancel = () => {
-        setEditableData({
-            phone: teacherData.personal.phone,
-            address: teacherData.personal.address,
-            image: teacherData.personal.image,
-            bloodGroup: teacherData.personal.bloodGroup
-        });
-        setIsEditing(false);
-    };
-
-    const handleSave = () => {
-        // TODO: Send updated data to backend API
-        setTeacherData({
-            ...teacherData,
-            personal: {
-                ...teacherData.personal,
-                phone: editableData.phone,
-                address: editableData.address,
-                image: editableData.image,
-                bloodGroup: editableData.bloodGroup
-            }
-        });
-        setIsEditing(false);
-    };
-
-    const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setEditableData({
-                    ...editableData,
-                    image: reader.result as string
-                });
-            };
-            reader.readAsDataURL(file);
-        }
     };
 
     return (
@@ -114,7 +56,7 @@ export default function TeacherProfilePage() {
                         {/* Profile Image */}
                         <div className="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-slate-700 overflow-hidden shadow-2xl shrink-0 bg-slate-800">
                             <Image
-                                src={isEditing ? editableData.image : teacherData.personal.image}
+                                src={teacherData.personal.image}
                                 alt="Teacher Photo"
                                 width={160}
                                 height={160}
@@ -154,116 +96,24 @@ export default function TeacherProfilePage() {
                 {/* Personal Details Card */}
                 <div className="bg-white rounded-xl shadow-xl overflow-hidden border-t-4 border-blue-500">
                     <div className="p-6 md:p-8">
-                        <div className="flex items-center justify-between mb-8">
-                            <div className="flex items-center gap-4">
-                                <div className="p-3 bg-blue-50 rounded-lg text-blue-600">
-                                    <User size={24} />
-                                </div>
-                                <div>
-                                    <h2 className="text-xl font-bold text-gray-800">Personal Details</h2>
-                                    <p className="text-sm text-gray-500">Manage your personal information</p>
-                                </div>
+                        <div className="flex items-center gap-4 mb-8">
+                            <div className="p-3 bg-blue-50 rounded-lg text-blue-600">
+                                <User size={24} />
                             </div>
-
-                            {!isEditing ? (
-                                <button
-                                    onClick={handleEdit}
-                                    className="flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-lg font-medium hover:bg-blue-100 transition-colors"
-                                >
-                                    <Edit2 size={18} />
-                                    <span className="hidden sm:inline">Edit Profile</span>
-                                </button>
-                            ) : (
-                                <div className="flex gap-2">
-                                    <button
-                                        onClick={handleSave}
-                                        className="flex items-center gap-2 bg-emerald-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-emerald-700 transition-colors shadow-md"
-                                    >
-                                        <Save size={18} />
-                                        <span>Save</span>
-                                    </button>
-                                    <button
-                                        onClick={handleCancel}
-                                        className="flex items-center gap-2 bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-lg font-medium hover:bg-gray-50 transition-colors"
-                                    >
-                                        <X size={18} />
-                                        <span>Cancel</span>
-                                    </button>
-                                </div>
-                            )}
+                            <div>
+                                <h2 className="text-xl font-bold text-gray-800">Personal Details</h2>
+                                <p className="text-sm text-gray-500">Manage your personal information</p>
+                            </div>
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6">
-                            {/* Image Upload Input */}
-                            {isEditing && (
-                                <div className="md:col-span-3 mb-4 p-4 border border-dashed border-blue-300 rounded-lg bg-blue-50/50 flex items-center gap-4">
-                                    <div className="shrink-0 p-3 bg-white rounded-full shadow-sm">
-                                        <Upload size={20} className="text-blue-500" />
-                                    </div>
-                                    <div className="flex-1">
-                                        <p className="text-sm font-medium text-gray-900">Update Profile Photo</p>
-                                        <p className="text-xs text-gray-500">Click the button to select a new image</p>
-                                    </div>
-                                    <input
-                                        ref={fileInputRef}
-                                        type="file"
-                                        accept="image/*"
-                                        onChange={handleImageUpload}
-                                        className="hidden"
-                                    />
-                                    <button
-                                        onClick={() => fileInputRef.current?.click()}
-                                        className="text-sm font-semibold text-blue-600 hover:text-blue-700"
-                                    >
-                                        Browse
-                                    </button>
-                                </div>
-                            )}
-
                             <InfoField label="Full Name" value={teacherData.personal.name} icon={<User size={16} />} />
                             <InfoField label="Date of Birth" value={new Date(teacherData.personal.dob).toLocaleDateString()} icon={<Calendar size={16} />} />
                             <InfoField label="Gender" value={teacherData.personal.gender} icon={<User size={16} />} />
                             <InfoField label="Email ID" value={teacherData.personal.email} icon={<Mail size={16} />} />
-
-                            {/* Blood Group - Editable */}
-                            {isEditing ? (
-                                <EditableField
-                                    label="Blood Group"
-                                    value={editableData.bloodGroup}
-                                    icon={<Shield size={14} />}
-                                    onChange={(value) => setEditableData({ ...editableData, bloodGroup: value })}
-                                />
-                            ) : (
-                                <InfoField label="Blood Group" value={teacherData.personal.bloodGroup} icon={<Shield size={16} />} />
-                            )}
-
-                            {/* Phone - Editable */}
-                            {isEditing ? (
-                                <EditableField
-                                    label="Contact No."
-                                    value={editableData.phone}
-                                    icon={<Phone size={14} />}
-                                    onChange={(value) => setEditableData({ ...editableData, phone: value })}
-                                />
-                            ) : (
-                                <InfoField label="Contact No." value={teacherData.personal.phone} icon={<Phone size={16} />} />
-                            )}
-
-                            {/* Residential Address - Editable */}
-                            {isEditing ? (
-                                <div className="md:col-span-3">
-                                    <label className="flex items-center gap-2 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">
-                                        <MapPin size={14} /> Residential Address
-                                    </label>
-                                    <textarea
-                                        value={editableData.address}
-                                        onChange={(e) => setEditableData({ ...editableData, address: e.target.value })}
-                                        className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-gray-800 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all outline-none min-h-[80px]"
-                                    />
-                                </div>
-                            ) : (
-                                <InfoField label="Residential Address" value={teacherData.personal.address} icon={<MapPin size={16} />} className="md:col-span-3" />
-                            )}
+                            <InfoField label="Blood Group" value={teacherData.personal.bloodGroup} icon={<Shield size={16} />} />
+                            <InfoField label="Contact No." value={teacherData.personal.phone} icon={<Phone size={16} />} />
+                            <InfoField label="Residential Address" value={teacherData.personal.address} icon={<MapPin size={16} />} className="md:col-span-3" />
                         </div>
                     </div>
                 </div>
@@ -336,28 +186,6 @@ export default function TeacherProfilePage() {
                                     <span>Reset Password</span>
                                 </button>
                             </Link>
-
-                            {/* Principal Specific Options */}
-                            {teacherData.official.designation === "Principal" && (
-                                <button
-                                    onClick={() => alert("Principal Portal Password Reset Link sent to email.")}
-                                    className="flex items-center gap-2 bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-all shadow-lg hover:shadow-purple-500/30"
-                                >
-                                    <Shield size={18} />
-                                    <span>Reset Principal Portal Password</span>
-                                </button>
-                            )}
-
-                            {/* Accountant Specific Options */}
-                            {teacherData.official.designation === "Accountant" && (
-                                <button
-                                    onClick={() => alert("Accountant Portal Password Reset Link sent to email.")}
-                                    className="flex items-center gap-2 bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition-all shadow-lg hover:shadow-indigo-500/30"
-                                >
-                                    <Shield size={18} />
-                                    <span>Reset Accountant Portal Password</span>
-                                </button>
-                            )}
                         </div>
                     </div>
                 </div>
@@ -376,35 +204,6 @@ function InfoField({ label, value, icon, className = "" }: { label: string; valu
             <p className="text-gray-900 font-medium text-base truncate border-b border-transparent group-hover:border-gray-200 pb-1 transition-colors">
                 {value}
             </p>
-        </div>
-    );
-}
-
-// Editable field component
-function EditableField({
-    label,
-    value,
-    onChange,
-    icon,
-    className = ""
-}: {
-    label: string;
-    value: string;
-    onChange: (value: string) => void;
-    icon?: React.ReactNode;
-    className?: string;
-}) {
-    return (
-        <div className={`${className}`}>
-            <label className="flex items-center gap-2 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">
-                {icon} {label}
-            </label>
-            <input
-                type="text"
-                value={value}
-                onChange={(e) => onChange(e.target.value)}
-                className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-gray-800 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all outline-none"
-            />
         </div>
     );
 }

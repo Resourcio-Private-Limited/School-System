@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { LayoutDashboard, Bell, IndianRupee, User, LogOut, ChevronLeft, ChevronRight } from "lucide-react";
+import { LayoutDashboard, Bell, User, LogOut, ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function TeacherLayout({
     children,
@@ -51,7 +51,7 @@ export default function TeacherLayout({
                         <div className="flex justify-center">
                             <Image
                                 src="/favicon.png"
-                                alt="MLZS"
+                                alt="Mount Litera Zee School, North Kolkata, Barrackpore"
                                 width={40}
                                 height={40}
                                 className="h-10 w-10 object-contain rounded-lg"
@@ -63,14 +63,13 @@ export default function TeacherLayout({
                 <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
                     <NavLink href="/teacher" icon={<LayoutDashboard size={20} />} label="Home (Classrooms)" isCollapsed={isCollapsed} />
                     <NavLink href="/teacher/noticeboard" icon={<Bell size={20} />} label="Notice Board" isCollapsed={isCollapsed} />
-                    <NavLink href="/teacher/salary" icon={<IndianRupee size={20} />} label="Salary Area" isCollapsed={isCollapsed} />
                     <NavLink href="/teacher/profile" icon={<User size={20} />} label="Profile" isCollapsed={isCollapsed} />
                 </nav>
 
-                <div className="p-4 border-t border-slate-800 bg-slate-900/50">
+                <div className="p-4 border-t border-slate-800 bg-slate-900/50 space-y-3">
                     {!isCollapsed ? (
                         <>
-                            <div className="flex items-center space-x-3 mb-4">
+                            <div className="flex items-center space-x-3 mb-3">
                                 <div className="w-10 h-10 rounded-full bg-emerald-900/50 border border-emerald-700/50 flex items-center justify-center text-emerald-400 font-bold">
                                     {mockUser.name?.[0] || "T"}
                                 </div>
@@ -79,17 +78,17 @@ export default function TeacherLayout({
                                     <p className="text-xs text-slate-500">{mockUser.email}</p>
                                 </div>
                             </div>
-                            <Link href="/" className="flex items-center space-x-3 text-red-400 p-2 hover:bg-red-950/30 rounded-lg transition-colors text-sm font-medium">
+                            <Link href="/" className="flex items-center justify-center space-x-2 bg-red-600 hover:bg-red-700 active:bg-red-800 text-white p-3 rounded-lg transition-colors text-sm font-semibold shadow-lg hover:shadow-red-600/50 w-full">
                                 <LogOut size={18} />
                                 <span>Logout</span>
                             </Link>
                         </>
                     ) : (
-                        <div className="flex flex-col items-center space-y-4">
+                        <div className="flex flex-col items-center space-y-3">
                             <div className="w-10 h-10 rounded-full bg-emerald-900/50 border border-emerald-700/50 flex items-center justify-center text-emerald-400 font-bold">
                                 {mockUser.name?.[0] || "T"}
                             </div>
-                            <Link href="/" className="text-red-400 p-2 hover:bg-red-950/30 rounded-lg transition-colors">
+                            <Link href="/" className="bg-red-600 hover:bg-red-700 active:bg-red-800 text-white p-3 rounded-lg transition-colors shadow-lg hover:shadow-red-600/50" title="Logout">
                                 <LogOut size={18} />
                             </Link>
                         </div>

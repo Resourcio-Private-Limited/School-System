@@ -131,7 +131,7 @@ export default function SuperAdminNoticeBoardPage() {
                                     value={newNotice.title}
                                     onChange={(e) => setNewNotice({ ...newNotice, title: e.target.value })}
                                     placeholder="Enter notice title..."
-                                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500 focus:outline-none"
+                                    className="w-full border rounded p-2 text-gray-900 placeholder-gray-500 focus:ring focus:ring-blue-500"
                                 />
                             </div>
                             <div>

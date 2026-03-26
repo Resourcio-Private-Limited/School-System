@@ -11,14 +11,14 @@ export default function Home() {
           <div className="flex items-center gap-4">
             {/* White Logo for Dark Background - If not available, use filter or text */}
             <Image
-              src="/MLZS_contents/Zee Learn White.png"
+              src="/sidebar_logo_expanded.png"
               alt="Mount Litera Zee School"
               width={120}
               height={40}
-              className="h-8 w-auto opacity-90"
+              className="h-16 w-auto opacity-90"
               priority
             />
-            <div className="h-6 w-px bg-white/20"></div>
+            <div className="h-16 w-px bg-white/20"></div>
             <span className="text-white/90 text-sm font-medium tracking-wide">PORTAL ACCESS</span>
           </div>
           <div className="text-white/60 text-xs tracking-wider uppercase hidden sm:block">
@@ -28,7 +28,7 @@ export default function Home() {
 
         <div className="max-w-7xl mx-auto px-6 pt-16 pb-12 text-center sm:text-left">
           <h1 className="text-3xl sm:text-4xl font-light text-white mb-2">
-            Welcome to <span className="font-bold text-blue-400">Mount Litera Zee School</span>
+            Welcome to <span className="font-bold text-blue-400">Mount Litera Zee School, North Kolkata, Barrackpore</span>
           </h1>
           <p className="text-slate-400 text-lg max-w-2xl font-light">
             Select your role to access the integrated management system.
@@ -109,9 +109,9 @@ export default function Home() {
                 <Phone size={20} />
               </div>
               <div>
-                <h3 className="font-semibold text-gray-800">24/7 Support</h3>
-                <p className="text-sm text-gray-500 mt-1">Need help? Contact our dedicated support team anytime.</p>
-                <p className="text-sm font-medium text-blue-600 mt-1">+91 1800-123-4567</p>
+                <h3 className="font-semibold text-gray-800">Support</h3>
+                <p className="text-sm text-gray-500 mt-1">Need help?amSupport available during school hours (9:00 AM – 3:00 PM, except holidays).</p>
+                <p className="text-sm font-medium text-blue-600 mt-1">+91 9875442599</p>
               </div>
             </div>
           </div>
@@ -120,38 +120,38 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-gray-200 py-6">
+      <footer className="bg-slate-900 border-t border-slate-800 py-6">
         <div className="max-w-7xl mx-auto px-6">
           {/* Top row: partner logos */}
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 pb-5 border-b border-gray-100">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 pb-5 border-b border-slate-800">
             <Image
               src="/MLZS_contents/write Zee Learn Original Blue.png"
-              alt="Zee Learn"
-              width={100}
-              height={30}
-              className="h-6 w-auto opacity-70"
+              alt="Mount Litera Zee School, North Kolkata, Barrackpore"
+              width={160}
+              height={48}
+              className="h-9 w-auto opacity-90 grayscale invert dark:invert-0"
             />
             {/* RET Branding */}
             <div className="flex items-center gap-3">
               <Image
                 src="/MLZS_contents/RET Icon-PNG.png"
-                alt="Rudraksh Educational Trust"
+                alt="Mount Litera Zee School, North Kolkata, Barrackpore"
                 width={36}
                 height={36}
-                className="h-9 w-auto"
+                className="h-9 w-auto opacity-90"
               />
               <div className="text-right">
-                <p className="text-sm font-semibold text-gray-700 leading-tight">Rudraksh Educational Trust</p>
-                <p className="text-xs text-gray-400 tracking-wide">Empowering Education</p>
+                <p className="text-sm font-semibold text-slate-100 leading-tight">Rudraksh Educational Trust</p>
+                <p className="text-xs text-slate-400 tracking-wide">Empowering Education</p>
               </div>
             </div>
           </div>
           {/* Bottom row: copyright */}
           <div className="pt-4 flex flex-col sm:flex-row justify-between items-center gap-2">
-            <p className="text-xs text-gray-400">
-              &copy; {new Date().getFullYear()} <span className="font-medium text-gray-500">Rudraksh Educational Trust</span>. All rights reserved.
+            <p className="text-xs text-slate-400">
+              &copy; {new Date().getFullYear()} <span className="font-medium text-slate-200">Rudraksh Educational Trust</span>. All rights reserved.
             </p>
-            <p className="text-xs text-gray-400">
+            <p className="text-xs text-slate-400">
               Mount Litera Zee School, North Kolkata &mdash; A unit of Rudraksh Educational Trust
             </p>
           </div>
