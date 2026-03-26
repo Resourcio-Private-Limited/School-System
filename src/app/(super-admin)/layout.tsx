@@ -70,27 +70,28 @@ export default function SuperAdminLayout({
                 <div className="p-4 border-t border-slate-800 bg-slate-900/50 space-y-3">
                     {!isCollapsed ? (
                         <>
-                            <div className="flex flex-col items-center space-y-3">
-                                <div className="w-10 h-10 rounded-full bg-blue-900/50 border border-blue-700/50 flex items-center justify-center text-blue-400 font-bold">
-                                    {mockUser.name[0]}
+                            <div className="flex items-center space-x-3 mb-3">
+                                <div className="w-10 h-10 rounded-full bg-rose-900/50 border border-rose-700/50 flex items-center justify-center text-rose-400 font-bold">
+                                    {mockUser.name?.[0] || "S"}
                                 </div>
-                                <div className="text-center">
-                                    <p className="text-sm font-medium text-slate-200">{mockUser.name}</p>
-                                    <p className="text-xs text-slate-400">{mockUser.email}</p>
+                                <div>
+                                    <p className="font-medium text-sm text-slate-200">{mockUser.name}</p>
+                                    <p className="text-xs text-slate-500">{mockUser.email}</p>
                                 </div>
                             </div>
-                            <button
-                                className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-500 transition-colors"
-                                onClick={() => alert('Logout functionality not implemented yet')}
-                            >
-                                Logout
-                            </button>
+                            <Link href="/" className="flex items-center justify-center space-x-2 bg-red-600 hover:bg-red-700 active:bg-red-800 text-white p-3 rounded-lg transition-colors text-sm font-semibold shadow-lg hover:shadow-red-600/50 w-full">
+                                <LogOut size={18} />
+                                <span>Logout</span>
+                            </Link>
                         </>
                     ) : (
                         <div className="flex flex-col items-center space-y-3">
-                            <div className="w-10 h-10 rounded-full bg-blue-900/50 border border-blue-700/50 flex items-center justify-center text-blue-400 font-bold">
-                                {mockUser.name[0]}
+                            <div className="w-10 h-10 rounded-full bg-rose-900/50 border border-rose-700/50 flex items-center justify-center text-rose-400 font-bold">
+                                {mockUser.name?.[0] || "S"}
                             </div>
+                            <Link href="/" className="bg-red-600 hover:bg-red-700 active:bg-red-800 text-white p-3 rounded-lg transition-colors shadow-lg hover:shadow-red-600/50" title="Logout">
+                                <LogOut size={18} />
+                            </Link>
                         </div>
                     )}
                 </div>
